@@ -1,5 +1,5 @@
 module AllYour
-  module Base77
+  module Base78
     # This *should* represent the characters that can safely be in a path
     # without having to be encoded.
     #
@@ -10,6 +10,7 @@ module AllYour
       0 1 2 3 4 5 6 7 8 9
       ! $ & ' ( ) * + , ; =
       - _ . ~
+      /
     ).sort.freeze
 
     BASE = CHARS.size
