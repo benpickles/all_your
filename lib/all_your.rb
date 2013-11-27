@@ -14,7 +14,7 @@ class AllYour
   end
 
   def initialize(chars)
-    @chars = chars.sort!
+    @chars = chars
   end
 
   def decode(string)
@@ -56,4 +56,4 @@ AllYour.register(%w(
   ! $ & ' ( ) * + , ; =
   - _ . ~
   /
-))
+).sort!)

@@ -14,17 +14,17 @@ describe AllYour do
   end
 
   it 'works' do
-    assert_equal 'iopqrtuwy', base.encode(123456789)
-    assert_equal 123456789, base.decode('iopqrtuwy')
+    assert_equal 'wertyuiop', base.encode(123456789)
+    assert_equal 123456789, base.decode('wertyuiop')
   end
 
   it 'works again' do
-    assert_equal 'iopqrtuwywutrqpoi', base.encode(12345678987654321)
-    assert_equal 12345678987654321, base.decode('iopqrtuwywutrqpoi')
+    assert_equal 'wertyuiopoiuytrew', base.encode(12345678987654321)
+    assert_equal 12345678987654321, base.decode('wertyuiopoiuytrew')
   end
 
   it 'encodes a string of digits' do
-    assert_equal 'iopqrtuwy', base.encode('123456789')
+    assert_equal 'wertyuiop', base.encode('123456789')
   end
 
   it 'returns an empty string for a non-positive number' do
