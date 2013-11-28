@@ -36,30 +36,36 @@ class AllYour
     string.split(//).map { |char|
       chars.index(char)
     }.inject(0) { |id, i|
-      id * base + i
+      id * size + i
     }
   end
 
   def encode(integer)
     integer = integer.to_i
 
-    raise EncodingError unless integer > 0
+    raise EncodingError if integer < 0
 
     string = ''
 
-    while integer > 0
-      integer, m = integer.divmod(base)
-      string = chars[m] + string
-    end
+    if integer.zero?
+      chars.first
+    else
+      string = ''
 
-    string
+      while integer > 0
+        integer, mod = integer.divmod(size)
+        string = chars[mod] + string
+      end
+
+      string
+    end
   end
 
   private
     attr_reader :chars
 
-    def base
-      @base ||= chars.size
+    def size
+      @size ||= chars.size
     end
 end
 
