@@ -1,29 +1,15 @@
 # AllYour
 
-TODO: Write a gem description
+A little experiment to see how many characters could be used in a link shortener's path. I think it ends up being "base 78":
 
-## Installation
+```ruby
+AllYour.base(78).decode('/~path/2/nowhere')
+# => 288757223154835410767515610539
+```
 
-Add this line to your application's Gemfile:
+Binary encoding also fell out for free:
 
-    gem 'all_your'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install all_your
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+```ruby
+AllYour.base(:binary).encode(42)
+# => "101010"
+```
