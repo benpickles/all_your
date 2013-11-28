@@ -36,6 +36,7 @@ class AllYour
 
   def decode(string)
     string.split(//).map { |char|
+      raise EncodingError unless chars.include?(char)
       chars.index(char)
     }.inject(0) { |id, i|
       id * size + i

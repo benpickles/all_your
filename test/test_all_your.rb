@@ -44,6 +44,12 @@ describe AllYour do
         base.encode(-999)
       end
     end
+
+    it 'blows up for an unsupported character' do
+      assert_raises AllYour::EncodingError do
+        base.decode('z')
+      end
+    end
   end
 
   describe :binary do
