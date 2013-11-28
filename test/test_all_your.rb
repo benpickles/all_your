@@ -2,18 +2,17 @@ require 'helper'
 require 'uri'
 
 describe AllYour do
-  let(:base) { AllYour.base(:foo) }
-
-  before do
-    AllYour.register(:foo, chars)
-  end
-
-  after do
-    AllYour.bases.delete(:foo)
-  end
-
   describe 'generally' do
+    let(:base) { AllYour.base(:foo) }
     let(:chars) { %w(q w e r t y u i o p) }
+
+    before do
+      AllYour.register(:foo, chars)
+    end
+
+    after do
+      AllYour.bases.delete(:foo)
+    end
 
     it 'works' do
       assert_equal 'q', base.encode(0)
@@ -48,7 +47,7 @@ describe AllYour do
   end
 
   describe :binary do
-    let(:chars) { %w(0 1) }
+    let(:base) { AllYour.base(:binary) }
 
     it do
       assert_equal    '0', base.encode(0)
@@ -66,7 +65,7 @@ describe AllYour do
   end
 
   describe :base78 do
-    let(:chars) { AllYour::Base78 }
+    let(:base) { AllYour.base(78) }
 
     it 'contains only URL-encodable characters' do
       string = base.send(:chars).join('')

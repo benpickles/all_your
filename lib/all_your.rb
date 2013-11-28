@@ -3,6 +3,8 @@ require 'all_your/version'
 class AllYour
   class EncodingError < StandardError; end
 
+  Binary = %w(0 1).freeze
+
   # I *think* this represents the characters that can safely be in a path
   # without having to be encoded.
   #
@@ -69,4 +71,5 @@ class AllYour
     end
 end
 
+AllYour.register(:binary, AllYour::Binary)
 AllYour.register(78, AllYour::Base78)
