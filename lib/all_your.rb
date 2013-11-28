@@ -1,6 +1,8 @@
 require 'all_your/version'
 
 class AllYour
+  class EncodingError < StandardError; end
+
   # I *think* this represents the characters that can safely be in a path
   # without having to be encoded.
   #
@@ -40,6 +42,9 @@ class AllYour
 
   def encode(integer)
     integer = integer.to_i
+
+    raise EncodingError unless integer > 0
+
     string = ''
 
     while integer > 0

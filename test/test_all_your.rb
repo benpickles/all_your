@@ -27,8 +27,10 @@ describe AllYour do
     assert_equal 'wertyuiop', base.encode('123456789')
   end
 
-  it 'returns an empty string for a non-positive number' do
-    assert_equal '', base.encode(-999)
+  it 'blows up for a non-positive number' do
+    assert_raises AllYour::EncodingError do
+      base.encode(-999)
+    end
   end
 
   describe 'base 78' do
