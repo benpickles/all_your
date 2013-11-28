@@ -22,8 +22,8 @@ class AllYour
     @bases ||= {}
   end
 
-  def self.register(chars)
-    bases[chars.size] = new(chars)
+  def self.register(name, chars)
+    bases[name] = new(chars)
   end
 
   def initialize(chars)
@@ -58,4 +58,4 @@ class AllYour
     end
 end
 
-AllYour.register(AllYour::Base78)
+AllYour.register(78, AllYour::Base78)

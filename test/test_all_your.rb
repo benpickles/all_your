@@ -3,14 +3,14 @@ require 'uri'
 
 describe AllYour do
   let(:chars) { %w(q w e r t y u i o p) }
-  let(:base) { AllYour.base(chars.size) }
+  let(:base) { AllYour.base(:foo) }
 
   before do
-    AllYour.register(chars)
+    AllYour.register(:foo, chars)
   end
 
   after do
-    AllYour.bases.delete(chars.size)
+    AllYour.bases.delete(:foo)
   end
 
   it 'works' do
@@ -32,11 +32,11 @@ describe AllYour do
   end
 
   describe 'base 78' do
-    let(:base) { AllYour.base(78) }
+    let(:chars) { AllYour::Base78 }
 
     it 'contains only URL-encodable characters' do
-      chars = base.send(:chars).join('')
-      assert_equal chars, URI.encode(chars)
+      string = base.send(:chars).join('')
+      assert_equal string, URI.encode(string)
     end
 
     it 'likes slashes' do
