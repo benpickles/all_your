@@ -59,8 +59,6 @@ class AllYour
 
     raise EncodingError if integer < 0
 
-    string = ''
-
     if integer.zero?
       chars.first
     else
