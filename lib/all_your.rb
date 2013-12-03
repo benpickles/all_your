@@ -1,7 +1,9 @@
 require 'all_your/version'
 
 class AllYour
-  class EncodingError < StandardError; end
+  AllYourError = Class.new(StandardError)
+  BaseNotFound = Class.new(AllYourError)
+  EncodingError = Class.new(AllYourError)
 
   Binary = %w(0 1).freeze
 
@@ -19,7 +21,9 @@ class AllYour
   ).sort!.freeze
 
   def self.base(base)
-    @bases.fetch(base)
+    @bases.fetch(base) do
+      raise BaseNotFound.new("base not found: #{base.inspect}")
+    end
   end
 
   def self.bases

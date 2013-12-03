@@ -50,6 +50,14 @@ describe AllYour do
         base.decode('z')
       end
     end
+
+    it 'blows up for an unknown base' do
+      AllYour.bases.delete(:foo)
+
+      assert_raises AllYour::BaseNotFound do
+        base
+      end
+    end
   end
 
   describe :binary do
