@@ -20,6 +20,13 @@ class AllYour
     /
   ).sort!.freeze
 
+  # <http://www.flickr.com/groups/api/discuss/72157616713786392>
+  Flickr = %w(
+    1 2 3 4 5 6 7 8 9
+    a b c d e f g h i j k   m n o p q r s t u v w x y z
+    A B C D E F G H   J K L M N   P Q R S T U V W X Y Z
+  ).freeze
+
   def self.base(base)
     @bases.fetch(base) do
       raise BaseNotFound.new("base not found: #{base.inspect}")
@@ -77,4 +84,5 @@ class AllYour
 end
 
 AllYour.register(:binary, AllYour::Binary)
+AllYour.register(:flickr, AllYour::Flickr)
 AllYour.register(78, AllYour::Base78)

@@ -90,4 +90,13 @@ describe AllYour do
       assert_equal 288757223154835410767515610539, base.decode('/~path/2/nowhere')
     end
   end
+
+  describe :flickr do
+    let(:base) { AllYour.base(:flickr) }
+
+    it do
+      assert_equal 'c3Nyn3', base.encode(7251641460)
+      assert_equal 7251641460, base.decode('c3Nyn3')
+    end
+  end
 end
