@@ -7,6 +7,12 @@ class AllYour
 
   Binary = %w(0 1).freeze
 
+  Base62 = %w(
+    0 1 2 3 4 5 6 7 8 9
+    a b c d e f g h i j k l m n o p q r s t u v w x y z
+    A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+  ).freeze
+
   # I *think* this represents the characters that can safely be in a path
   # without having to be encoded.
   #
@@ -83,4 +89,5 @@ end
 
 AllYour.register(:binary, AllYour::Binary)
 AllYour.register(:flickr, AllYour::Flickr)
+AllYour.register(62, AllYour::Base62)
 AllYour.register(78, AllYour::Base78)

@@ -78,6 +78,15 @@ describe AllYour do
     end
   end
 
+  describe :base62 do
+    let(:base) { AllYour.base(62) }
+
+    it do
+      assert_equal '8m0Kx', base.encode(123456789)
+      assert_equal 123456789, base.decode('8m0Kx')
+    end
+  end
+
   describe :base78 do
     let(:base) { AllYour.base(78) }
 
