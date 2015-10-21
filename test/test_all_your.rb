@@ -100,6 +100,15 @@ describe AllYour do
     end
   end
 
+  describe :crockford_base32 do
+    let(:base) { AllYour.base(:crockford_base32) }
+
+    it do
+      assert_equal '3NQK8N', base.encode(123456789)
+      assert_equal 123456789, base.decode('3NQK8N')
+    end
+  end
+
   describe :flickr do
     let(:base) { AllYour.base(:flickr) }
 
