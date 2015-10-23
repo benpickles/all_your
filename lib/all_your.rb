@@ -26,6 +26,21 @@ class AllYour
     /
   ).sort!.freeze
 
+  # Crockford Base32
+  #
+  # This encoding scheme is designed to be:
+  #   * human readable and machine readable
+  #   * compact; humans have difficulty in manipulating long strings of arbitrary symbols
+  #   * error resistant; entering the symbols must not require keyboarding gymnastics
+  #   * pronounceable; humans should be able to accurately transmit the symbols to other
+  #     humans using a telephone
+  #
+  # <http://www.crockford.com/wrmg/base32.html>
+  CrockfordBase32 = %w(
+    0 1 2 3 4 5 6 7 8 9
+    A B C D E F G H J K M N P Q R S T V W X Y Z
+  )
+
   # <http://www.flickr.com/groups/api/discuss/72157616713786392>
   Flickr = %w(
     1 2 3 4 5 6 7 8 9
@@ -88,6 +103,7 @@ class AllYour
 end
 
 AllYour.register(:binary, AllYour::Binary)
+AllYour.register(:crockford_base32, AllYour::CrockfordBase32)
 AllYour.register(:flickr, AllYour::Flickr)
 AllYour.register(62, AllYour::Base62)
 AllYour.register(78, AllYour::Base78)
