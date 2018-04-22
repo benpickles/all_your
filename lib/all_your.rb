@@ -39,8 +39,8 @@ module AllYour
   # <http://www.crockford.com/wrmg/base32.html>
   CrockfordBase32 = Base.new(%w(
     0 1 2 3 4 5 6 7 8 9
-    A B C D E F G H J K M N P Q R S T V W X Y Z
-  )
+    A B C D E F G H   J K   M N   P Q R S T   V W X Y Z
+  ))
 
   # <http://www.flickr.com/groups/api/discuss/72157616713786392>
   Flickr = Base.new(%w(
