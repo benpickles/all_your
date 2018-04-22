@@ -3,16 +3,8 @@ require 'uri'
 
 describe AllYour do
   describe 'generally' do
-    let(:base) { AllYour.base(:foo) }
+    let(:base) { AllYour::Base.new(chars) }
     let(:chars) { %w(q w e r t y u i o p) }
-
-    before do
-      AllYour.register(:foo, chars)
-    end
-
-    after do
-      AllYour.bases.delete(:foo)
-    end
 
     it 'works' do
       assert_equal 'q', base.encode(0)
@@ -50,18 +42,10 @@ describe AllYour do
         base.decode('z')
       end
     end
-
-    it 'blows up for an unknown base' do
-      AllYour.bases.delete(:foo)
-
-      assert_raises AllYour::BaseNotFound do
-        base
-      end
-    end
   end
 
-  describe :binary do
-    let(:base) { AllYour.base(:binary) }
+  describe 'Binary' do
+    let(:base) { AllYour::Binary }
 
     it do
       assert_equal    '0', base.encode(0)
@@ -78,8 +62,8 @@ describe AllYour do
     end
   end
 
-  describe :base62 do
-    let(:base) { AllYour.base(62) }
+  describe 'Base62' do
+    let(:base) { AllYour::Base62 }
 
     it do
       assert_equal '8m0Kx', base.encode(123456789)
@@ -87,8 +71,8 @@ describe AllYour do
     end
   end
 
-  describe :base78 do
-    let(:base) { AllYour.base(78) }
+  describe 'Base78' do
+    let(:base) { AllYour::Base78 }
 
     it 'contains only URL-encodable characters' do
       string = base.send(:chars).join('')
@@ -100,8 +84,8 @@ describe AllYour do
     end
   end
 
-  describe :crockford_base32 do
-    let(:base) { AllYour.base(:crockford_base32) }
+  describe 'CrockfordBase32' do
+    let(:base) { AllYour::CrockfordBase32 }
 
     it do
       assert_equal '3NQK8N', base.encode(123456789)
@@ -109,8 +93,8 @@ describe AllYour do
     end
   end
 
-  describe :flickr do
-    let(:base) { AllYour.base(:flickr) }
+  describe 'Flickr' do
+    let(:base) { AllYour::Flickr }
 
     it do
       assert_equal 'c3Nyn3', base.encode(7251641460)
