@@ -1,3 +1,5 @@
+require 'all_your/errors'
+
 module AllYour
   class Base
     attr_reader :chars

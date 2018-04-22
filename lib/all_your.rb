@@ -2,10 +2,6 @@ require 'all_your/base'
 require 'all_your/version'
 
 module AllYour
-  AllYourError = Class.new(StandardError)
-  DecodingError = Class.new(AllYourError)
-  EncodingError = Class.new(AllYourError)
-
   Binary = Base.new(%w(0 1))
 
   Base62 = Base.new(%w(
