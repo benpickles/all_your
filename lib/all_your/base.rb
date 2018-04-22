@@ -8,7 +8,7 @@ module AllYour
 
     def decode(string)
       string.split(//).map { |char|
-        raise EncodingError.new("could not decode character: #{char}") unless chars.include?(char)
+        raise DecodingError.new("could not decode character: #{char}") unless chars.include?(char)
         chars.index(char)
       }.inject(0) { |id, i|
         id * size + i

@@ -38,7 +38,7 @@ describe AllYour do
     end
 
     it 'blows up for an unsupported character' do
-      assert_raises AllYour::EncodingError do
+      assert_raises AllYour::DecodingError do
         base.decode('z')
       end
     end
