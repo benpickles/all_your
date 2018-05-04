@@ -2,16 +2,21 @@ require 'all_your/errors'
 
 module AllYour
   class Base
-    attr_reader :chars
+    attr_reader :chars, :lookup, :size
 
     def initialize(chars)
       @chars = chars
+      @lookup = chars.each_with_object({}).with_index { |(char, memo), index|
+        memo[char] = index
+      }
+      @size = chars.size
     end
 
     def decode(string)
-      string.split(//).map { |char|
-        raise DecodingError.new("could not decode character: #{char}") unless chars.include?(char)
-        chars.index(char)
+      string.chars.map { |char|
+        lookup.fetch(char) { |key|
+          raise DecodingError.new("could not decode character: #{key}")
+        }
       }.inject(0) { |id, i|
         id * size + i
       }
@@ -35,10 +40,5 @@ module AllYour
         string
       end
     end
-
-    private
-      def size
-        @size ||= chars.size
-      end
   end
 end
